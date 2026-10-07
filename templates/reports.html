@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reports | Attendify</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+
+    body {
+        min-height: 100vh;
+
+        background: #0b1020;
+
+        color: white;
+
+        padding: 40px;
+    }
+
+
+    .container {
+        max-width: 1200px;
+
+        margin: auto;
+    }
+
+
+    /* =========================
+       TOP SECTION
+    ========================== */
+
+    .top {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 35px;
+
+        gap: 20px;
+    }
+
+
+    h1 {
+        font-size: 36px;
+    }
+
+
+    .subtitle {
+        color: #8fa7d8;
+
+        margin-top: 8px;
+    }
+
+
+    /* =========================
+       DASHBOARD BUTTON
+    ========================== */
+
+    .back {
+        text-decoration: none;
+
+        color: white;
+
+        background: #202a44;
+
+        padding: 12px 20px;
+
+        border-radius: 10px;
+
+        transition: 0.3s;
+    }
+
+
+    .back:hover {
+        background: #33436b;
+
+        transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       CARD
+    ========================== */
+
+    .card {
+        background: #151c32;
+
+        border: 1px solid #293552;
+
+        border-radius: 18px;
+
+        padding: 25px;
+
+        overflow-x: auto;
+    }
+
+
+    /* =========================
+       TABLE
+    ========================== */
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+    }
+
+
+    th,
+    td {
+        padding: 18px;
+
+        text-align: left;
+
+        border-bottom: 1px solid #293552;
+    }
+
+
+    th {
+        color: #8fa7d8;
+
+        font-size: 14px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.5px;
+    }
+
+
+    td {
+        color: #e8edff;
+    }
+
+
+    tr {
+        transition: 0.2s;
+    }
+
+
+    tr:hover {
+        background: #1b2540;
+    }
+
+
+    /* =========================
+       PRESENT BADGE
+    ========================== */
+
+    .badge {
+        display: inline-block;
+
+        padding: 7px 12px;
+
+        border-radius: 20px;
+
+        background: #26395f;
+
+        color: #9fc1ff;
+
+        font-weight: 600;
+    }
+
+
+    /* =========================
+       ATTENDANCE PERCENTAGE
+    ========================== */
+
+    .percentage {
+        font-weight: bold;
+
+        font-size: 15px;
+    }
+
+
+    /* Good attendance */
+
+    .high {
+        color: #6ee7a0;
+    }
+
+
+    /* Medium attendance */
+
+    .medium {
+        color: #f5c76b;
+    }
+
+
+    /* Low attendance */
+
+    .low {
+        color: #ff7777;
+    }
+
+
+    /* =========================
+       ATTENDANCE STATUS
+    ========================== */
+
+    .attendance-status {
+        display: inline-block;
+
+        margin-left: 8px;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        padding: 5px 9px;
+
+        border-radius: 8px;
+    }
+
+
+    /* Warning for below 75% */
+
+    .warning {
+        color: #ff7777;
+
+        background: rgba(239, 68, 68, 0.12);
+
+        border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+
+    /* Good attendance label */
+
+    .safe {
+        color: #6ee7a0;
+
+        background: rgba(34, 197, 94, 0.10);
+
+        border: 1px solid rgba(34, 197, 94, 0.20);
+    }
+
+
+    /* =========================
+       EMPTY STATE
+    ========================== */
+
+    .empty {
+        text-align: center;
+
+        color: #8fa7d8;
+
+        padding: 30px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 750px) {
+
+        body {
+            padding: 20px;
+        }
+
+
+        .top {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+
+        h1 {
+            font-size: 30px;
+        }
+
+
+        .card {
+            padding: 15px;
+        }
+
+
+        th,
+        td {
+            padding: 13px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<!-- =========================
+     TOP SECTION
+========================== -->
+
+<div class="top">
+
+    <div>
+
+        <h1>
+            Attendance Reports
+        </h1>
+
+        <p class="subtitle">
+            View student attendance performance
+        </p>
+
+    </div>
+
+
+    <a
+        href="/"
+        class="back"
+    >
+        ← Dashboard
+    </a>
+
+</div>
+
+
+
+<!-- =========================
+     REPORT CARD
+========================== -->
+
+<div class="card">
+
+
+    <table>
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Student ID
+                </th>
+
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Total Classes
+                </th>
+
+                <th>
+                    Present
+                </th>
+
+                <th>
+                    Absent
+                </th>
+
+                <th>
+                    Attendance %
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            {% if reports %}
+
+
+                {% for report in reports %}
+
+
+                <tr>
+
+
+                    <!-- Student ID -->
+
+                    <td>
+                        {{ report[0] }}
+                    </td>
+
+
+                    <!-- Student Name -->
+
+                    <td>
+                        {{ report[1] }}
+                    </td>
+
+
+                    <!-- Total Classes -->
+
+                    <td>
+                        {{ report[2] }}
+                    </td>
+
+
+                    <!-- Present -->
+
+                    <td>
+
+                        <span class="badge">
+                            {{ report[3] }}
+                        </span>
+
+                    </td>
+
+
+                    <!-- Absent -->
+
+                    <td>
+                        {{ report[4] }}
+                    </td>
+
+
+                    <!-- Attendance Percentage -->
+
+                    <td>
+
+
+                        <span
+                            class="percentage
+                            {% if report[5] >= 75 %}
+                                high
+                            {% elif report[5] >= 50 %}
+                                medium
+                            {% else %}
+                                low
+                            {% endif %}"
+                        >
+
+                            {{ report[5] }}%
+
+                        </span>
+
+
+
+                        <!-- LOW ATTENDANCE WARNING -->
+
+                        {% if report[5] < 75 %}
+
+                            <span class="attendance-status warning">
+
+                                ⚠️ Low Attendance
+
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="attendance-status safe">
+
+                                ✓ Good
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <!-- No attendance records -->
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="empty"
+                    >
+
+                        No attendance records available.
+
+                    </td>
+
+                </tr>
+
+
+            {% endif %}
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

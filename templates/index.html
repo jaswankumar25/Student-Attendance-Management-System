@@ -1,0 +1,1433 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Attendance Management System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(99,102,241,0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(14,165,233,0.15),
+                    transparent 30%
+                ),
+                #080b14;
+
+            color: #f8fafc;
+            display: flex;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+
+            padding: 28px 18px;
+
+            background: rgba(15, 23, 42, 0.75);
+
+            backdrop-filter: blur(20px);
+
+            border-right:
+                1px solid rgba(255,255,255,0.08);
+
+            position: fixed;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 45px;
+
+            padding-left: 10px;
+        }
+
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #06b6d4
+                );
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            box-shadow:
+                0 10px 30px
+                rgba(99,102,241,0.3);
+        }
+
+
+        .logo h2 {
+            font-size: 17px;
+        }
+
+
+        .logo span {
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        .nav-title {
+            color: #64748b;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            margin:
+                20px 12px 10px;
+        }
+
+
+        .nav-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 14px;
+
+            margin: 6px 0;
+
+            border-radius: 12px;
+
+            color: #94a3b8;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+
+            background:
+                rgba(99,102,241,0.18);
+
+            transform:
+                translateX(4px);
+        }
+
+
+        .nav-icon {
+            width: 22px;
+
+            text-align: center;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+
+            width:
+                calc(100% - 250px);
+
+            padding:
+                35px 45px;
+        }
+
+
+        .topbar {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .topbar h1 {
+            font-size: 30px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .topbar p {
+            color: #94a3b8;
+
+            margin-top: 6px;
+        }
+
+
+        .profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .avatar {
+            width: 43px;
+            height: 43px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6366f1,
+                    #06b6d4
+                );
+
+            font-weight: bold;
+        }
+
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .card {
+            padding: 23px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(15, 23, 42, 0.68);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            backdrop-filter: blur(18px);
+
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(99,102,241,0.35);
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .card-label {
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .card-value {
+            font-size: 30px;
+
+            font-weight: 700;
+        }
+
+
+        .card-sub {
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-top: 7px;
+        }
+
+
+        .icon-box {
+            float: right;
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(99,102,241,0.15);
+        }
+
+
+        /* ================= CONTENT ================= */
+
+        .content-grid {
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr;
+
+            gap: 22px;
+        }
+
+
+        .panel {
+            background:
+                rgba(15, 23, 42, 0.68);
+
+            border:
+                1px solid rgba(255,255,255,0.07);
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            backdrop-filter: blur(18px);
+        }
+
+
+        .panel-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+
+        .panel-header h2 {
+            font-size: 18px;
+        }
+
+
+        .search {
+            background:
+                rgba(255,255,255,0.05);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            border-radius: 10px;
+
+            padding: 10px 14px;
+
+            color: white;
+
+            outline: none;
+        }
+
+
+        .search::placeholder {
+            color: #64748b;
+        }
+
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        th {
+            text-align: left;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            padding: 14px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+
+        td {
+            padding: 17px 14px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+
+            color: #cbd5e1;
+        }
+
+
+        tr {
+            transition: 0.2s;
+        }
+
+
+        tr:hover {
+            background:
+                rgba(99,102,241,0.06);
+        }
+
+
+        .student-name {
+            color: white;
+
+            font-weight: 600;
+        }
+
+
+        .badge {
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .badge-present {
+            background:
+                rgba(34,197,94,0.12);
+
+            color: #4ade80;
+        }
+
+
+        .badge-absent {
+            background:
+                rgba(239,68,68,0.12);
+
+            color: #f87171;
+        }
+
+
+        /* ================= ATTENDANCE PANEL ================= */
+
+        .attendance-circle {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            margin: 25px auto;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #0f172a 58%,
+                    transparent 59%
+                ),
+                conic-gradient(
+                    #6366f1
+                    0deg
+                    calc(var(--attendance) * 3.6deg),
+
+                    #1e293b
+                    calc(var(--attendance) * 3.6deg)
+                    360deg
+                );
+        }
+
+
+        .attendance-circle strong {
+            font-size: 35px;
+        }
+
+
+        .attendance-info {
+            text-align: center;
+        }
+
+
+        .attendance-info p {
+            color: #94a3b8;
+
+            margin-top: 5px;
+        }
+
+
+        .progress {
+            margin-top: 25px;
+        }
+
+
+        .progress-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            color: #94a3b8;
+
+            font-size: 13px;
+        }
+
+
+        .progress-bar {
+            height: 7px;
+
+            background: #1e293b;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+
+        .progress-fill {
+            height: 100%;
+
+            width: var(--attendance-width);
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #6366f1,
+                    #06b6d4
+                );
+        }
+
+
+
+        /* ================= ABOUT ATTENDIFY MODAL ================= */
+
+        .logo {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .about-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .about-overlay.show {
+            display: flex;
+        }
+
+        .about-modal {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(15, 23, 42, 0.96);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+            animation: aboutOpen 0.25s ease;
+        }
+
+        @keyframes aboutOpen {
+            from {
+                opacity: 0;
+                transform: scale(0.92) translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .about-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .about-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .about-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .about-brand h2 {
+            font-size: 23px;
+        }
+
+        .about-brand span {
+            display: block;
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .about-close {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: #cbd5e1;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .about-close:hover {
+            background: rgba(239,68,68,0.15);
+            color: #f87171;
+        }
+
+        .about-description {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .about-section-title {
+            font-size: 14px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .about-feature {
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .about-feature-icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .about-feature strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .about-feature p {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .about-footer {
+            margin-top: 25px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            color: #64748b;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .about-modal {
+                padding: 24px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0;
+
+                width: 100%;
+
+                padding: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                align-items: flex-start;
+
+                gap: 15px;
+
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo" onclick="openAbout()" title="About Attendify">
+
+            <div class="logo-icon">
+                SA
+            </div>
+
+            <div>
+
+                <h2>
+                    Attendify
+                </h2>
+
+                <span>
+                    Management System
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-title">
+            MAIN MENU
+        </div>
+
+
+        <!-- Dashboard -->
+
+        <a href="/" class="nav-item active">
+
+            <span class="nav-icon">
+                ⌂
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <!-- Students -->
+
+        <a href="/students" class="nav-item">
+
+            <span class="nav-icon">
+                ♙
+            </span>
+
+            Students
+
+        </a>
+
+
+        <!-- Attendance -->
+
+        <a href="/attendance" class="nav-item">
+
+            <span class="nav-icon">
+                ✓
+            </span>
+
+            Attendance
+
+        </a>
+
+
+        <!-- Subjects -->
+
+        <a href="/subjects" class="nav-item">
+
+            <span class="nav-icon">
+                ▣
+            </span>
+
+            Subjects
+
+        </a>
+
+
+        <!-- Reports -->
+
+        <a href="/reports" class="nav-item">
+
+            <span class="nav-icon">
+                ~
+            </span>
+
+            Reports
+
+        </a>
+
+
+        <div class="nav-title">
+            SYSTEM
+        </div>
+
+
+        <a href="#" class="nav-item">
+
+            <span class="nav-icon">
+                ⚙
+            </span>
+
+            Settings
+
+        </a>
+
+
+    </aside>
+
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Student Attendance Management System
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div>
+                    <strong>
+                        Administrator
+                    </strong>
+                </div>
+
+
+                <div class="avatar">
+                    A
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= STATISTICS ================= -->
+
+        <section class="stats">
+
+
+            <!-- TOTAL STUDENTS -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    👨‍🎓
+                </div>
+
+                <div class="card-label">
+                    Total Students
+                </div>
+
+                <div class="card-value">
+                    {{ total_students }}
+                </div>
+
+                <div class="card-sub">
+                    Registered students
+                </div>
+
+            </div>
+
+
+
+            <!-- TOTAL SUBJECTS -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    📚
+                </div>
+
+                <div class="card-label">
+                    Subjects
+                </div>
+
+                <div class="card-value">
+                    {{ total_subjects }}
+                </div>
+
+                <div class="card-sub">
+                    Active subjects
+                </div>
+
+            </div>
+
+
+
+            <!-- PRESENT TODAY -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    ✓
+                </div>
+
+                <div class="card-label">
+                    Present Today
+                </div>
+
+                <div class="card-value">
+                    {{ present_today }}
+                </div>
+
+                <div class="card-sub">
+                    Attendance recorded
+                </div>
+
+            </div>
+
+
+
+            <!-- AVERAGE ATTENDANCE -->
+
+            <div class="card">
+
+                <div class="icon-box">
+                    %
+                </div>
+
+                <div class="card-label">
+                    Average Attendance
+                </div>
+
+                <div class="card-value">
+                    {{ average_attendance }}%
+                </div>
+
+                <div class="card-sub">
+                    Overall attendance
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ================= CONTENT GRID ================= -->
+
+        <section class="content-grid">
+
+
+            <!-- ================= STUDENT TABLE ================= -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Student Records
+                        </h2>
+
+                        <p
+                            style="
+                                color:#64748b;
+                                font-size:13px;
+                                margin-top:5px;
+                            "
+                        >
+                            Registered students
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        class="search"
+                        placeholder="Search student..."
+                        id="searchInput"
+                    >
+
+                </div>
+
+
+
+                <div class="table-wrapper">
+
+
+                    <table id="studentTable">
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Student
+                                </th>
+
+                                <th>
+                                    Department
+                                </th>
+
+                                <th>
+                                    Year
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+
+                        <tbody>
+
+
+                            {% for student in students %}
+
+
+                            <tr>
+
+
+                                <td>
+                                    #{{ student[0] }}
+                                </td>
+
+
+                                <td class="student-name">
+                                    {{ student[1] }}
+                                </td>
+
+
+                                <td>
+                                    {{ student[2] }}
+                                </td>
+
+
+                                <td>
+                                    Year {{ student[3] }}
+                                </td>
+
+
+                                <td>
+
+                                    <span
+                                        class="badge badge-present"
+                                    >
+                                        Active
+                                    </span>
+
+                                </td>
+
+
+                            </tr>
+
+
+                            {% endfor %}
+
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ================= ATTENDANCE PANEL ================= -->
+
+            <div class="panel">
+
+
+                <div class="panel-header">
+
+                    <h2>
+                        Attendance Overview
+                    </h2>
+
+                </div>
+
+
+
+                <div
+                    class="attendance-circle"
+                    style="--attendance: {{ average_attendance }};"
+                >
+
+                    <strong>
+                        {{ average_attendance }}%
+                    </strong>
+
+                </div>
+
+
+
+                <div class="attendance-info">
+
+                    <strong>
+                        Overall Attendance
+                    </strong>
+
+                    <p>
+                        Current academic period
+                    </p>
+
+                </div>
+
+
+
+                <div class="progress">
+
+
+                    <div class="progress-row">
+
+                        <span>
+                            Present
+                        </span>
+
+                        <span>
+                            {{ average_attendance }}%
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="
+                                --attendance-width:
+                                {{ average_attendance }}%;
+                            "
+                        >
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= SEARCH FUNCTION ================= -->
+
+    <script>
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+
+        searchInput.addEventListener(
+            "keyup",
+            function () {
+
+                const search =
+                    searchInput.value.toLowerCase();
+
+
+                const rows =
+                    document.querySelectorAll(
+                        "#studentTable tbody tr"
+                    );
+
+
+                rows.forEach(row => {
+
+                    const text =
+                        row.innerText.toLowerCase();
+
+
+                    row.style.display =
+                        text.includes(search)
+                        ? ""
+                        : "none";
+
+                });
+
+            }
+        );
+
+    </script>
+
+
+
+    <!-- ================= ABOUT ATTENDIFY MODAL ================= -->
+
+    <div class="about-overlay" id="aboutOverlay">
+
+        <div class="about-modal">
+
+            <div class="about-header">
+
+                <div class="about-brand">
+
+                    <div class="about-icon">
+                        SA
+                    </div>
+
+                    <div>
+                        <h2>Attendify</h2>
+                        <span>Student Attendance Management System</span>
+                    </div>
+
+                </div>
+
+                <button
+                    class="about-close"
+                    onclick="closeAbout()"
+                    aria-label="Close">
+                    ×
+                </button>
+
+            </div>
+
+            <p class="about-description">
+                Attendify is a simple and efficient student attendance
+                management application designed to help administrators
+                manage students, subjects and attendance records from
+                one centralized dashboard.
+            </p>
+
+            <div class="about-section-title">
+                What can Attendify do?
+            </div>
+
+            <div class="about-features">
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">👨‍🎓</div>
+                    <strong>Student Management</strong>
+                    <p>Add, view and manage registered student information.</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">📚</div>
+                    <strong>Subject Management</strong>
+                    <p>Organize and manage subjects handled by the students.</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">✓</div>
+                    <strong>Attendance Tracking</strong>
+                    <p>Record and monitor student attendance efficiently.</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">📊</div>
+                    <strong>Attendance Overview</strong>
+                    <p>View overall attendance statistics through the dashboard.</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">🔍</div>
+                    <strong>Quick Search</strong>
+                    <p>Quickly find students using the built-in search feature.</p>
+                </div>
+
+                <div class="about-feature">
+                    <div class="about-feature-icon">📋</div>
+                    <strong>Reports</strong>
+                    <p>Access attendance information and generate useful reports.</p>
+                </div>
+
+            </div>
+
+            <div class="about-footer">
+                Attendify • Smart • Simple • Organized
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function openAbout() {
+            document.getElementById("aboutOverlay").classList.add("show");
+        }
+
+        function closeAbout() {
+            document.getElementById("aboutOverlay").classList.remove("show");
+        }
+
+        document.getElementById("aboutOverlay").addEventListener("click", function(event) {
+            if (event.target === this) {
+                closeAbout();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeAbout();
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
+```

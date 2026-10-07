@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Students | Attendify</title>
+
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+
+    body {
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 10% 20%,
+                rgba(99,102,241,0.18),
+                transparent 30%
+            ),
+
+            radial-gradient(
+                circle at 90% 80%,
+                rgba(14,165,233,0.15),
+                transparent 30%
+            ),
+
+            #080b14;
+
+        color: #f8fafc;
+
+        padding: 40px;
+    }
+
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+
+    /* ================= TOP SECTION ================= */
+
+    .top {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 35px;
+
+        gap: 20px;
+    }
+
+
+    h1 {
+        font-size: 36px;
+
+        letter-spacing: -0.5px;
+    }
+
+
+    .subtitle {
+        color: #94a3b8;
+
+        margin-top: 8px;
+
+        font-size: 14px;
+    }
+
+
+    /* ================= BUTTON GROUP ================= */
+
+    .button-group {
+        display: flex;
+
+        gap: 12px;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    /* ================= COMMON BUTTON ================= */
+
+    .nav-btn {
+        display: inline-block;
+
+        text-decoration: none;
+
+        color: white;
+
+        background:
+            rgba(15, 23, 42, 0.75);
+
+        border:
+            1px solid rgba(255,255,255,0.08);
+
+        padding: 12px 18px;
+
+        border-radius: 10px;
+
+        backdrop-filter: blur(15px);
+
+        transition: 0.3s;
+
+        font-size: 14px;
+
+        font-weight: 500;
+    }
+
+
+    .nav-btn:hover {
+        background:
+            rgba(99,102,241,0.18);
+
+        border-color:
+            rgba(99,102,241,0.35);
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* ================= ADD STUDENT BUTTON ================= */
+
+    .add-btn {
+        display: inline-block;
+
+        text-decoration: none;
+
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                #6366f1,
+                #06b6d4
+            );
+
+        padding: 12px 20px;
+
+        border-radius: 10px;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+
+        box-shadow:
+            0 8px 25px
+            rgba(99,102,241,0.20);
+    }
+
+
+    .add-btn:hover {
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 12px 30px
+            rgba(99,102,241,0.35);
+    }
+
+
+    /* ================= TABLE CARD ================= */
+
+    .card {
+        background:
+            rgba(15, 23, 42, 0.68);
+
+        border:
+            1px solid rgba(255,255,255,0.07);
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        backdrop-filter:
+            blur(18px);
+
+        overflow-x: auto;
+
+        box-shadow:
+            0 15px 40px
+            rgba(0,0,0,0.20);
+    }
+
+
+    /* ================= TABLE ================= */
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+    }
+
+
+    th,
+    td {
+        padding: 18px;
+
+        text-align: left;
+
+        border-bottom:
+            1px solid
+            rgba(255,255,255,0.05);
+    }
+
+
+    th {
+        color: #64748b;
+
+        font-size: 12px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 1px;
+    }
+
+
+    td {
+        color: #cbd5e1;
+    }
+
+
+    tr {
+        transition: 0.2s;
+    }
+
+
+    tr:hover {
+        background:
+            rgba(99,102,241,0.06);
+    }
+
+
+    /* ================= STUDENT NAME ================= */
+
+    .student-name {
+        color: white;
+
+        font-weight: 600;
+    }
+
+
+    /* ================= DEPARTMENT BADGE ================= */
+
+    .badge {
+        display: inline-block;
+
+        padding: 7px 12px;
+
+        border-radius: 20px;
+
+        background:
+            rgba(99,102,241,0.12);
+
+        color: #a5b4fc;
+
+        font-size: 12px;
+
+        font-weight: 600;
+    }
+
+
+    /* ================= ACTION BUTTONS ================= */
+
+    .action-buttons {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        flex-wrap: wrap;
+    }
+
+
+    /* ================= EDIT BUTTON ================= */
+
+    .edit-btn {
+        display: inline-block;
+
+        text-decoration: none;
+
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                #6366f1,
+                #06b6d4
+            );
+
+        padding: 8px 14px;
+
+        border-radius: 8px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+
+        box-shadow:
+            0 5px 15px
+            rgba(99,102,241,0.15);
+    }
+
+
+    .edit-btn:hover {
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 8px 20px
+            rgba(99,102,241,0.30);
+    }
+
+
+    /* ================= DELETE BUTTON ================= */
+
+    .delete-btn {
+        border: none;
+
+        color: #fca5a5;
+
+        background:
+            rgba(239,68,68,0.12);
+
+        border:
+            1px solid rgba(239,68,68,0.18);
+
+        padding: 8px 14px;
+
+        border-radius: 8px;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+    }
+
+
+    .delete-btn:hover {
+        background:
+            rgba(239,68,68,0.20);
+
+        border-color:
+            rgba(239,68,68,0.35);
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* ================= EMPTY STATE ================= */
+
+    .empty {
+        text-align: center;
+
+        padding: 40px;
+
+        color: #64748b;
+
+        font-size: 14px;
+    }
+
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 750px) {
+
+        body {
+            padding: 20px;
+        }
+
+
+        .top {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+
+        .button-group {
+            width: 100%;
+
+            gap: 8px;
+        }
+
+
+        .nav-btn,
+        .add-btn {
+            text-align: center;
+        }
+
+
+        h1 {
+            font-size: 30px;
+        }
+
+
+        .card {
+            padding: 15px;
+        }
+
+
+        th,
+        td {
+            padding: 13px;
+        }
+
+
+        .action-buttons {
+            flex-direction: column;
+
+            align-items: flex-start;
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= TOP SECTION ================= -->
+
+<div class="top">
+
+
+    <div>
+
+        <h1>
+            Students
+        </h1>
+
+        <p class="subtitle">
+            Manage all registered students
+        </p>
+
+    </div>
+
+
+    <div class="button-group">
+
+
+        <!-- Dashboard -->
+
+        <a
+            href="/"
+            class="nav-btn"
+        >
+            ← Dashboard
+        </a>
+
+
+        <!-- Attendance -->
+
+        <a
+            href="/attendance"
+            class="nav-btn"
+        >
+            ✓ Attendance
+        </a>
+
+
+        <!-- Reports -->
+
+        <a
+            href="/reports"
+            class="nav-btn"
+        >
+            📊 Reports
+        </a>
+
+
+        <!-- Add Student -->
+
+        <a
+            href="/add-student"
+            class="add-btn"
+        >
+            + Add Student
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= STUDENT TABLE ================= -->
+
+<div class="card">
+
+
+    <table>
+
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Student ID
+                </th>
+
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Department
+                </th>
+
+                <th>
+                    Year
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+            {% for student in students %}
+
+
+            <tr>
+
+
+                <!-- Student ID -->
+
+                <td>
+                    #{{ student[0] }}
+                </td>
+
+
+                <!-- Student Name -->
+
+                <td class="student-name">
+                    {{ student[1] }}
+                </td>
+
+
+                <!-- Department -->
+
+                <td>
+
+                    <span class="badge">
+                        {{ student[2] }}
+                    </span>
+
+                </td>
+
+
+                <!-- Year -->
+
+                <td>
+                    Year {{ student[3] }}
+                </td>
+
+
+                <!-- ACTIONS -->
+
+                <td>
+
+                    <div class="action-buttons">
+
+
+                        <!-- EDIT -->
+
+                        <a
+                            href="/edit-student/{{ student[0] }}"
+                            class="edit-btn"
+                        >
+                            ✏️ Edit
+                        </a>
+
+
+                        <!-- DELETE -->
+
+                        <form
+                            action="/delete-student/{{ student[0] }}"
+                            method="POST"
+                            onsubmit="return confirm('Are you sure you want to delete this student? This will also delete their attendance records.');"
+                            style="display: inline;"
+                        >
+
+                            <button
+                                type="submit"
+                                class="delete-btn"
+                            >
+                                🗑️ Delete
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+                </td>
+
+
+            </tr>
+
+
+            {% else %}
+
+
+            <!-- No students -->
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+                    No students registered yet.
+                </td>
+
+            </tr>
+
+
+            {% endfor %}
+
+
+        </tbody>
+
+
+    </table>
+
+
+</div>
+
+</div>
+
+</body>
+
+</html>
