@@ -297,7 +297,6 @@ Possible future improvements include:
 **JASWAN KUMAR K**
 
 B.Tech – Information Technology  
-Specialization: Cloud Computing
 
 ---
 
