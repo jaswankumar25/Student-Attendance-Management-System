@@ -221,7 +221,7 @@ The attendance module is used to record and manage student attendance.
 
 ## 📊 Attendance Reports
 
-![Attendance Reports](screenshots/05_attendance_report.png)
+![Attendance Reports](screenshots/05_attendace_report.png)
 
 The reports section provides attendance-related information from the database.
 
