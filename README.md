@@ -10,7 +10,7 @@ A web-based Student Attendance Management System developed as a Database Managem
 
 The application provides a centralized system for managing student details, subjects, attendance records, and attendance reports through a simple and user-friendly dashboard.
 
-The project demonstrates the practical implementation of database concepts such as data storage, retrieval, insertion, updating, and relationship-based management using **MySQL**.
+The project demonstrates the practical implementation of database concepts such as data storage, retrieval, insertion, updating, and deletion using **MySQL**.
 
 ---
 
@@ -31,29 +31,34 @@ The main objectives of Attendify are:
 ## ✨ Key Features
 
 ### 👨‍🎓 Student Management
+
 - Add new students.
 - View student details.
 - Edit existing student information.
 - Manage student records in the database.
 
 ### 📚 Subject Management
+
 - Add subjects.
 - View available subjects.
 - Maintain subject information.
 
 ### ✅ Attendance Management
+
 - Record student attendance.
 - Manage attendance records.
 - View attendance information.
 - Maintain attendance data using MySQL.
 
 ### 📊 Attendance Reports
+
 - View attendance-related information.
 - Generate attendance reports from stored database records.
 
 ### 🖥️ Dashboard
+
 - Provides an overview of the attendance management system.
-- Displays important information in a simple and organized interface.
+- Displays important attendance information.
 - Provides navigation to different modules of the application.
 
 ---
@@ -97,7 +102,7 @@ The application follows a simple three-layer architecture:
 └──────────────────────────────┘
 ```
 
-The user interacts with the web interface, Flask processes the application requests, and MySQL stores and retrieves the required data.
+The user interacts with the web interface, Flask processes application requests, and MySQL stores and retrieves the required data.
 
 ---
 
@@ -121,6 +126,13 @@ Student-Attendance-Management-System/
 │   ├── attendance.html
 │   └── reports.html
 │
+├── screenshots/
+│   ├── 01-dashboard.png
+│   ├── 02-students.png
+│   ├── 03-subjects.png
+│   ├── 04-attendance.png
+│   └── 05-reports.png
+│
 ├── .gitignore
 └── README.md
 ```
@@ -139,14 +151,14 @@ The database is responsible for storing and managing information related to:
 - Subjects
 - Attendance records
 
-The Flask backend communicates with the MySQL database to perform database operations such as:
+The Flask backend communicates with MySQL to perform database operations such as:
 
 - `INSERT`
 - `SELECT`
 - `UPDATE`
 - `DELETE`
 
-This allows the application to provide real-time interaction with the stored data.
+This enables the application to interact with stored data in real time.
 
 ---
 
@@ -170,6 +182,48 @@ Stored / Updated Data
   ▼
 Attendance Information & Reports
 ```
+
+---
+
+# 📸 Application Screenshots
+
+## 🏠 Dashboard
+
+![Attendify Dashboard](screenshots/01-dashboard.png)
+
+The dashboard provides an overview of the application and quick access to the major modules.
+
+---
+
+## 👨‍🎓 Student Management
+
+![Student Management](screenshots/02-students.png)
+
+The student management module allows student records to be viewed and managed.
+
+---
+
+## 📚 Subject Management
+
+![Subject Management](screenshots/03-subjects.png)
+
+The subject management module allows subjects to be added and viewed.
+
+---
+
+## ✅ Attendance Management
+
+![Attendance Management](screenshots/04-attendance.png)
+
+The attendance module is used to record and manage student attendance.
+
+---
+
+## 📊 Attendance Reports
+
+![Attendance Reports](screenshots/05-reports.png)
+
+The reports section provides attendance-related information from the database.
 
 ---
 
@@ -203,7 +257,7 @@ For Windows PowerShell:
 .\venv\Scripts\Activate.ps1
 ```
 
-### 5. Install the required Python packages
+### 5. Install the required packages
 
 ```bash
 pip install flask mysql-connector-python
@@ -292,11 +346,13 @@ Possible future improvements include:
 
 ---
 
-## 👨‍💻 Developer
+## 👥 Project and Contribution
 
-**JASWAN KUMAR K**
+The current version of the application, including the implementation, database integration, frontend functionality, attendance management modules, and project documentation, was completed by:
 
-B.Tech – Information Technology  
+### JASWAN KUMAR K
+
+**B.Tech – Information Technology**  
 
 ---
 
