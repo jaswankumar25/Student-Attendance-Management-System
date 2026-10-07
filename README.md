@@ -189,7 +189,7 @@ Attendance Information & Reports
 
 ## 🏠 Dashboard
 
-![Attendify Dashboard](screenshots/01-dashboard.png)
+![Attendify Dashboard](screenshots/01_dashboard.png)
 
 The dashboard provides an overview of the application and quick access to the major modules.
 
@@ -197,7 +197,7 @@ The dashboard provides an overview of the application and quick access to the ma
 
 ## 👨‍🎓 Student Management
 
-![Student Management](screenshots/02-students.png)
+![Student Management](screenshots/02_student.png)
 
 The student management module allows student records to be viewed and managed.
 
@@ -205,7 +205,7 @@ The student management module allows student records to be viewed and managed.
 
 ## 📚 Subject Management
 
-![Subject Management](screenshots/03-subjects.png)
+![Subject Management](screenshots/04_subject.png)
 
 The subject management module allows subjects to be added and viewed.
 
@@ -213,7 +213,7 @@ The subject management module allows subjects to be added and viewed.
 
 ## ✅ Attendance Management
 
-![Attendance Management](screenshots/04-attendance.png)
+![Attendance Management](screenshots/03_attendance.png)
 
 The attendance module is used to record and manage student attendance.
 
@@ -221,7 +221,7 @@ The attendance module is used to record and manage student attendance.
 
 ## 📊 Attendance Reports
 
-![Attendance Reports](screenshots/05-reports.png)
+![Attendance Reports](screenshots/05_attendance_report.png)
 
 The reports section provides attendance-related information from the database.
 
